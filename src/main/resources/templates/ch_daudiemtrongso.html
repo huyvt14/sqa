@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" th:href="@{css/style.css}">
+<title>cấu hình - đầu điểm trọng số</title>
+</head>
+<body>
+	<h1>cấu hình - đầu điểm trọng số</h1>
+	<div>
+		<form th:action="@{/cauhinh/thaydoidaudiemtrongso}">
+			<table border="1" id="ch_bangdaudiemtrongso">
+				<thead>
+					<th>Tên đầu điểm</th>
+					<th>Trọng số</th>
+					<th></th>
+				</thead>
+				<tbody th:each="mhdd : ${session.listMonHocDauDiem}">
+					<row>
+						<td>
+							<input type="text" th:value="${mhdd.dauDiem.ten}" name="ten">
+						</td>
+						<td>
+							<select name="trongso">
+								<option value="10" th:selected="${mhdd.dauDiem.trongSo == 10}" >10%</option>
+								<option value="20" th:selected="${mhdd.dauDiem.trongSo == 20}" >20%</option>
+								<option value="30" th:selected="${mhdd.dauDiem.trongSo == 30}" >30%</option>
+								<option value="40" th:selected="${mhdd.dauDiem.trongSo == 40}" >40%</option>
+								<option value="50" th:selected="${mhdd.dauDiem.trongSo == 50}" >50%</option>
+								<option value="60" th:selected="${mhdd.dauDiem.trongSo == 60}" >60%</option>
+								<option value="70" th:selected="${mhdd.dauDiem.trongSo == 70}" >70%</option>
+								<option value="80" th:selected="${mhdd.dauDiem.trongSo == 80}" >80%</option>	
+							</select>
+						</td>
+						<td><button type="button" onclick="xoaHang(this)">xóa</button></td>
+					</row>
+				</tbody>
+			</table>
+			<button type="button" onclick="themHang()">Thêm</button>
+			<button type="submit" >Xác nhận thay đổi</button>
+		</form>
+	</div>
+	
+</body>
+</html>
+	<script>
+	    function xoaHang(button) {
+	        var hang = button.parentNode.parentNode;
+	        hang.parentNode.removeChild(hang);
+	    }
+	    function themHang(){
+	        var table = document.getElementById('ch_bangdaudiemtrongso');  	
+	        var lastRow = table.rows[table.rows.length - 1];
+	        var newRow = table.insertRow(table.rows.length-1);
+
+	        var cells = lastRow.getElementsByTagName('td');
+
+	        var td1 = cells[0];
+	        var td2 = cells[1];
+	        var td3 = cells[2];
+
+	        var inp = td1.children[0].cloneNode(true); // Lấy input đầu tiên và tạo một bản sao của nó
+	        inp.value = ""; // Xóa giá trị của input
+
+	        var sel = td2.children[0].cloneNode(true); // Lấy select đầu tiên và tạo một bản sao của nó
+	        sel.selectedIndex = 0; // Chọn option đầu tiên trong select
+
+	        var but = td3.children[0].cloneNode(true); // Lấy button đầu tiên và tạo một bản sao của nó
+
+	        var ntd1 = newRow.insertCell(0);
+	        ntd1.appendChild(inp);
+
+	        var ntd2 = newRow.insertCell(1);
+	        ntd2.appendChild(sel);
+
+	        var ntd3 = newRow.insertCell(2);
+	        ntd3.appendChild(but);
+	    }
+	</script>

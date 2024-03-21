@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" th:href="@{css/style.css}">
+<title>cấu hình - chọn môn</title>
+</head>
+<body>
+	<h1>cấu hình - chọn môn</h1>
+	<form th:action="@{/cauhinh/timmonhoc}">
+		<lable>tìm kiếm theo tên môn học:</lable>
+		<input type="text" name="tenmonhoc">
+		<button type="submit">tìm kiếm</button>
+	</form>
+	<table border="1">
+		<thead>
+			<th>id</th>
+			<th>ten</th>
+		</thead>
+		<tbody th:each="monhoc : ${session.listMonHocKiHoc}">
+			<tr>
+				<td th:text="${monhoc.monHoc.id}"></td>
+				<td th:text="${monhoc.monHoc.ten}"></td>
+			</tr>
+		</tbody>
+	</table>
+	
+</body>
+</html>
