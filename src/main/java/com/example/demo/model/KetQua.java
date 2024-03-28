@@ -12,7 +12,7 @@ public class KetQua {
 	@Id
 	private int id;
 	@ManyToOne
-	@JoinColumn(name = "mon_hoc_dau_diem_id")
+	@JoinColumn(name = "monhocdaudiem_id")
 	private MonHocDauDiem monHocDauDiem;
 	private float diem;
 	private String ghiChu;

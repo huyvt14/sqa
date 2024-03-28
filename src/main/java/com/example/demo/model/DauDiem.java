@@ -2,6 +2,8 @@ package com.example.demo.model;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import lombok.Data;
 
@@ -9,10 +11,9 @@ import lombok.Data;
 @Data
 public class DauDiem {
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	private String ten;
 	@Column(name = "mo_ta")
 	private String moTa;
-	@Column(name = "trong_so")
-	private int trongSo;
 }

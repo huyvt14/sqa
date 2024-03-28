@@ -13,6 +13,6 @@ public class LopHocPhan {
 	private int id;
 	private String ten;
 	@ManyToOne
-	@JoinColumn(name = "mon_hoc_ki_hoc_id")
+	@JoinColumn(name = "monhockihoc_id")
 	private MonHocKiHoc monHocKiHoc;
 }

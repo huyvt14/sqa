@@ -14,9 +14,9 @@ public class MonHocKiHoc {
 	private int id;
 	private int nhomMonHoc;
 	@ManyToOne
-	@JoinColumn(name = "ki_hoc_id")
+	@JoinColumn(name = "kihoc_id")
 	private KiHoc kiHoc;
 	@ManyToOne
-	@JoinColumn(name = "mon_hoc_id")
+	@JoinColumn(name = "monhoc_id")
 	private MonHoc monHoc;
 }
