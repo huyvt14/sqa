@@ -22,20 +22,6 @@ import jakarta.servlet.http.HttpSession;
 
 @Controller
 public class MainController {
-//	private final DauDiemService dauDiemService;
-//	private final MonHocService monHocService;
-//	private final KiHocService kiHocService;
-//	private final MonHocDauDiemService monHocDauDiemService;
-//	private final MonHocKiHocService monHocKiHocService;
-//	
-//	public MainController(DauDiemService dauDiemService, MonHocService monHocService, KiHocService kiHocService,
-//			MonHocDauDiemService monHocDauDiemService,MonHocKiHocService monHocKiHocService) {
-//		this.dauDiemService = dauDiemService;
-//		this.monHocDauDiemService = monHocDauDiemService;
-//		this.kiHocService=kiHocService;
-//		this.monHocService = monHocService;
-//		this.monHocKiHocService =monHocKiHocService;
-//	}
 	
 	@GetMapping("")
 	public String trangChu() {

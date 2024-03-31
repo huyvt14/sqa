@@ -14,6 +14,7 @@ public class LopHocPhan {
 	@Id
 	private int id;
 	private String ten;
+	private int nhomMonHoc;
 	@ManyToOne
 	@JoinColumn(name = "monhockihoc_id")
 	private MonHocKiHoc monHocKiHoc;

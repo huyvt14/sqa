@@ -6,24 +6,42 @@
 <title>cấu hình - chọn môn</title>
 </head>
 <body>
-	<h1>cấu hình - chọn môn</h1>
-	<form th:action="@{/cauhinh/timmonhoc}">
-		<lable>tìm kiếm theo tên môn học:</lable>
-		<input type="text" name="tenmonhoc">
+	<h1>Cấu hình đầu điểm trọng số - chọn môn học</h1>
+	
+	<form th:action="@{/cauhinh/kqtimkiemmonhoc}">
+			<lable for="ch_chonki">Chọn kì học:</lable> 
+			<select class="" id="ch_chonki" name="id_kihoc">
+				<option th:each="kihoc : ${session.listkihoc}" 
+				th:value="${kihoc.id}" 
+				th:text="${kihoc.hocKi.ten + ' năm học ' + kihoc.namHoc.ten}" 
+				th:selected="${kihoc.id == session.id_kihoc}"></option>
+			</select>
+			<br>
+		<lable for="ch_nhapid" >Tìm kiếm theo tên môn học:</lable>
+		<input id="ch_nhapid" type="text" name="tenmonhoc" th:value="${session.tenmonhoc}">
 		<button type="submit">tìm kiếm</button>
 	</form>
-	<table border="1">
+	
+	<table th:if="${not #lists.isEmpty(session.listMonHocKiHoc)}" border="1">
 		<thead>
-			<th>id</th>
-			<th>ten</th>
+			<th>Mã môn học</th>
+			<th>Tên môn học</th>
+			<th>Số tín chỉ</th>
+			<th></th>
 		</thead>
-		<tbody th:each="monhoc : ${session.listMonHocKiHoc}">
+		<tbody th:each="monhockihoc : ${session.listMonHocKiHoc}">
 			<tr>
-				<td th:text="${monhoc.monHoc.id}"></td>
-				<td th:text="${monhoc.monHoc.ten}"></td>
+				<td th:text="${monhockihoc.monHoc.maMonHoc}"></td>
+				<td th:text="${monhockihoc.monHoc.ten}"></td>
+				<td th:text="${monhockihoc.monHoc.soTinChi}"></td>
+				<td>
+					<form th:action="@{/cauhinh/chinhsuadaudiemtrongso}">
+						<input type="hidden" th:value="${monhockihoc.monHoc.id}" name="idmonhoc">
+						<button type="submit">Chỉnh sửa</button>
+					</form> 
+				</td>
 			</tr>
 		</tbody>
 	</table>
-	
 </body>
 </html>

@@ -14,7 +14,6 @@ import lombok.Data;
 public class MonHocKiHoc {
 	@Id
 	private int id;
-	private int nhomMonHoc;
 	@ManyToOne
 	@JoinColumn(name = "kihoc_id")
 	private KiHoc kiHoc;

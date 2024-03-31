@@ -1,5 +1,6 @@
 package com.example.demo.model;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
@@ -19,7 +20,8 @@ public class KiHoc {
 	@ManyToOne
 	@JoinColumn(name="nam_hoc_id")
 	private NamHoc namHoc;
-	private boolean dangHoc;
+	@Column( columnDefinition = "int DEFAULT 0", name="dang_hoc")
+	private int dangHoc;
 	
 	public KiHoc() {
 	}

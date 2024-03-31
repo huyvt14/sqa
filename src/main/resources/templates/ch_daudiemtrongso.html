@@ -4,76 +4,128 @@
 <meta charset="UTF-8">
 <link rel="stylesheet" th:href="@{css/style.css}">
 <title>cấu hình - đầu điểm trọng số</title>
+<style>
+        table {
+            margin: auto; 
+            margin-top:50px;
+        }    
+        .caiKhungChuaButton{
+   	        display: flex;
+		    margin-top: 30px;
+		    justify-content: center;
+        }
+        #buttontrai{
+        	margin-right: 50px;
+        }
+    </style>
 </head>
 <body>
-	<h1>cấu hình - đầu điểm trọng số</h1>
+	<h1>Cấu hình đầu điểm trọng số</h1>
+	<h3 th:text="${'Môn học: '+session.monHocTieuDe.maMonHoc + ' - '+session.monHocTieuDe.ten}"></h3>
 	<div>
-		<form th:action="@{/cauhinh/thaydoidaudiemtrongso}">
-			<table border="1" id="ch_bangdaudiemtrongso">
-				<thead>
-					<th>Tên đầu điểm</th>
-					<th>Trọng số</th>
-					<th></th>
-				</thead>
-				<tbody th:each="mhdd : ${session.listMonHocDauDiem}">
-					<row>
-						<td>
-							<input type="text" th:value="${mhdd.dauDiem.ten}" name="ten">
-						</td>
-						<td>
-							<select name="trongso">
-								<option value="10" th:selected="${mhdd.dauDiem.trongSo == 10}" >10%</option>
-								<option value="20" th:selected="${mhdd.dauDiem.trongSo == 20}" >20%</option>
-								<option value="30" th:selected="${mhdd.dauDiem.trongSo == 30}" >30%</option>
-								<option value="40" th:selected="${mhdd.dauDiem.trongSo == 40}" >40%</option>
-								<option value="50" th:selected="${mhdd.dauDiem.trongSo == 50}" >50%</option>
-								<option value="60" th:selected="${mhdd.dauDiem.trongSo == 60}" >60%</option>
-								<option value="70" th:selected="${mhdd.dauDiem.trongSo == 70}" >70%</option>
-								<option value="80" th:selected="${mhdd.dauDiem.trongSo == 80}" >80%</option>	
-							</select>
-						</td>
-						<td><button type="button" onclick="xoaHang(this)">xóa</button></td>
-					</row>
-				</tbody>
-			</table>
-			<button type="button" onclick="themHang()">Thêm</button>
-			<button type="submit" >Xác nhận thay đổi</button>
-		</form>
+		<form th:action="@{/cauhinh/capnhatdaudiemtrongso}">
+			<table id="ch_bangdaudiemtrongso" border="1">
+            <thead>
+                <tr>
+                    <th>Tên đầu điểm</th>
+                    <th>Trọng số (%)</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="monhocdaudiem : ${session.listDauDiemMonHoc}">
+                    <td>
+                        <input type="text" th:value="${monhocdaudiem.dauDiem.ten}"  name="tendaudiem"/>
+                        <input type="hidden" th:value="${monhocdaudiem.id}" name="id"/>
+                    </td>
+                    <td>
+                        <select name="trongso">
+                        	<option value="10" th:selected="${monhocdaudiem.trongSo == 10}">10</option>
+                            <option value="20" th:selected="${monhocdaudiem.trongSo == 20}">20</option>
+                            <option value="30" th:selected="${monhocdaudiem.trongSo == 30}">30</option>
+                            <option value="40" th:selected="${monhocdaudiem.trongSo == 40}">40</option>
+                            <option value="50" th:selected="${monhocdaudiem.trongSo == 50}">50</option>
+                            <option value="60" th:selected="${monhocdaudiem.trongSo == 60}">60</option>
+                            <option value="70" th:selected="${monhocdaudiem.trongSo == 70}">70</option>
+                            <option value="80" th:selected="${monhocdaudiem.trongSo == 80}">80</option>
+                            <option value="90" th:selected="${monhocdaudiem.trongSo == 90}">90</option>
+                            <option value="100" th:selected="${monhocdaudiem.trongSo == 100}">100</option>
+                        </select>
+                    </td>
+                    <td>
+                        <button type="button" onclick="deleteRow(this)">Xóa</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="caiKhungChuaButton">
+	        <button type="button" onclick="themDauDiem()" class="buttondieukhien" id="buttontrai">Thêm đầu điểm</button>
+	        <button type="submit" id="ch_nutluuthaydoi" class="buttondieukhien">Lưu thay đổi</button>
+        </div>   
+    </form>
 	</div>
 	
 </body>
 </html>
-	<script>
-	    function xoaHang(button) {
-	        var hang = button.parentNode.parentNode;
-	        hang.parentNode.removeChild(hang);
-	    }
-	    function themHang(){
-	        var table = document.getElementById('ch_bangdaudiemtrongso');  	
-	        var lastRow = table.rows[table.rows.length - 1];
-	        var newRow = table.insertRow(table.rows.length-1);
+	
+    <script>
+    function themDauDiem() {
+        var table = document.getElementById("ch_bangdaudiemtrongso").getElementsByTagName('tbody')[0];
+        var newIndex = table.rows.length;
+        var newRow = table.insertRow(newIndex);
+        var cell1 = newRow.insertCell(0);
+        var cell2 = newRow.insertCell(1);
+        var cell3 = newRow.insertCell(2);
 
-	        var cells = lastRow.getElementsByTagName('td');
+        cell1.innerHTML = '<input type="text" name="tendaudiem">' + '<input type="hidden" name="id">';
+        cell2.innerHTML = '<select name="trongso">' +
+                            '<option value="10">10</option>' +
+                            '<option value="20">20</option>' +
+                            '<option value="30">30</option>' +
+                            '<option value="40">40</option>' +
+                            '<option value="50">50</option>' +
+                            '<option value="60">60</option>' +
+                            '<option value="70">70</option>' +
+                            '<option value="80">80</option>' +
+                            '<option value="90">90</option>' +
+                            '<option value="100">100</option>' +
+                            '</select>';
+        cell3.innerHTML = '<button type="button" onclick="deleteRow(this)">Xóa</button>';
+    }
 
-	        var td1 = cells[0];
-	        var td2 = cells[1];
-	        var td3 = cells[2];
+    
+    function deleteRow(button) {
+        var row = button.parentNode.parentNode;
+        row.parentNode.removeChild(row);
+    }
 
-	        var inp = td1.children[0].cloneNode(true); // Lấy input đầu tiên và tạo một bản sao của nó
-	        inp.value = ""; // Xóa giá trị của input
-
-	        var sel = td2.children[0].cloneNode(true); // Lấy select đầu tiên và tạo một bản sao của nó
-	        sel.selectedIndex = 0; // Chọn option đầu tiên trong select
-
-	        var but = td3.children[0].cloneNode(true); // Lấy button đầu tiên và tạo một bản sao của nó
-
-	        var ntd1 = newRow.insertCell(0);
-	        ntd1.appendChild(inp);
-
-	        var ntd2 = newRow.insertCell(1);
-	        ntd2.appendChild(sel);
-
-	        var ntd3 = newRow.insertCell(2);
-	        ntd3.appendChild(but);
-	    }
+	   
+    function kiemTraTongTrongSo(){
+    	var danhSachTrongSo = document.getElementByName('trongso');
+    	var nutluuthaydoi=document.getElementById('ch_nutluuthaydoi');
+    	var tongTrongSo=0;
+    	danhSachTrongSo.forEach(function(currentValue, index) {
+    		  tongTrongSo= tongTrongSo+currentValue;
+    	});
+    	if(tongTrongSo != 100){
+    		 console.log("Tổng trọng số khác 100");
+    		 nutluuthaydoi.disabled = true;
+    	}
+    }
+    function kiemTraTenDauDiem(chuoi){
+    	// Kiểm tra độ dài của chuỗi
+        if (chuoi.length > 20) {
+            return false; // Quá 20 ký tự
+        }
+        // Kiểm tra ký tự đặc biệt
+        if (/[^a-zA-Z0-9]/.test(chuoi)) {
+            return false; // Có ký tự đặc biệt
+        }
+        // Kiểm tra xem chữ số có đứng đầu không
+        if (/^[0-9]/.test(chuoi)) {
+            return false; // Chữ số đứng đầu
+        }
+        // Nếu vượt qua tất cả các điều kiện kiểm tra
+        return true;
+    }
 	</script>

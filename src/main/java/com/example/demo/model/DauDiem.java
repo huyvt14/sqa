@@ -15,7 +15,15 @@ public class DauDiem {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
+	@Column( columnDefinition = "NVARCHAR(255)")
 	private String ten;
 	@Column(name = "mo_ta")
 	private String moTa;
+	
+	public DauDiem() {
+		
+	}
+	public DauDiem(String ten) {
+		this.ten = ten;
+	}
 }

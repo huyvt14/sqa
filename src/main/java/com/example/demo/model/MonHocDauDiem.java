@@ -21,4 +21,27 @@ public class MonHocDauDiem {
 	@JoinColumn(name = "daudiem_id")
 	private DauDiem dauDiem;
 	private int trongSo ;
+	@ManyToOne
+	@JoinColumn(name = "kihoc_id")
+	private KiHoc kiHoc;
+	@ManyToOne
+	@JoinColumn(name = "monhoc_id")
+	private MonHoc monHoc;
+	
+	public MonHocDauDiem() {
+		
+	}
+	public MonHocDauDiem(int id,DauDiem dauDiem, KiHoc kiHoc, int trongSo, MonHoc monHoc) {
+		this.id=id;
+		this.dauDiem = dauDiem;
+		this.kiHoc = kiHoc;
+		this.trongSo = trongSo;
+		this.monHoc =monHoc;
+	}
+	public MonHocDauDiem(DauDiem dauDiem, KiHoc kiHoc, int trongSo, MonHoc monHoc) {
+		this.dauDiem = dauDiem;
+		this.kiHoc = kiHoc;
+		this.trongSo = trongSo;
+		this.monHoc =monHoc;
+	}
 }

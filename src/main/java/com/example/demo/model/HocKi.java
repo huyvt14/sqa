@@ -12,8 +12,10 @@ import lombok.Data;
 public class HocKi {
 	@Id
 	private int id;
-	@Column(name = "ten")
+	@Column( columnDefinition = "NVARCHAR(255)")
 	private String ten;
 	@Column(name = "mo_ta")
 	private String moTa;
+	@Column(name = "tt",  unique = true)
+	private int stt;
 }
