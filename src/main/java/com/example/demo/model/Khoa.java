@@ -1,5 +1,8 @@
 package com.example.demo.model;
 
+import java.util.ArrayList;
+import java.util.Set;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
@@ -15,8 +18,8 @@ public class Khoa {
 	private String moTa;
 	@OneToMany
 	@JoinColumn(name = "khoa_id")
-	private MonHoc[] danhSachMonHoc;
+	private Set<MonHoc> danhSachMonHoc;
 	@OneToMany
 	@JoinColumn(name = "khoa_id")
-	private GiangVien[] danhSachGiangVien;
+	private Set<GiangVien> danhSachGiangVien;
 }

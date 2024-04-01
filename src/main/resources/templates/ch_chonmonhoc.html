@@ -4,44 +4,114 @@
 <meta charset="UTF-8">
 <link rel="stylesheet" th:href="@{css/style.css}">
 <title>cấu hình - chọn môn</title>
+ <style>
+ 		body {
+            margin: 0;
+		    padding: 0;
+		    height : 100%;
+		    font-size: 20px;
+        }
+        .wrapper {
+        	position: relative;
+		    min-height: 100%;
+        }
+        header {
+            background-color: red; 
+            color: white; 
+            padding: 20px; 
+            padding-left: 40px;
+        }
+        aside {
+		    float: right; /* Sử dụng float để đặt phần tử sang bên phải */
+		    width: 17%; /* Đặt chiều rộng của phần tử */
+		    background-color:  #ffcccc; /* Màu nền của phần tử aside */
+		    padding: 20px; /* Khoảng cách giữa nội dung và lề của phần tử */
+		    height: 90vh; /* Đặt chiều cao của phần tử là 100% chiều cao của viewport */
+    		box-sizing: border-box; /* Đảm bảo chiều cao bao gồm cả padding */
+		}
+		table {
+			margin : auto;
+			margin-top: 30px;
+			width : 60%;
+			text-align: center;
+		}
+		footer {
+			position: absolute;
+    		bottom: -5px;
+    		width: 100%;
+			background-color: red; 
+            color: white; 
+            padding: 20px; 
+
+		}
+		h1{
+			padding-left: 40px;	
+		}
+		#lable_kihoc {
+			margin-left: 10%;
+			font-weight: bold;
+		}
+		#lable_mamonhoc {
+			float: right;
+			margin-right: 10%;
+			font-weight: bold;
+		}
+		
+		
+    </style>
 </head>
 <body>
-	<h1>Cấu hình đầu điểm trọng số - chọn môn học</h1>
+	<div class ="wrapper">
+		<header >
+			<div>Trang chủ</div>
+		</header>
+		<aside>
+			<div>Sinh viên</div>
+			<div>Đăng xuất</div>
+		</aside>
+		<article>
+			<h1>Cấu hình đầu điểm trọng số - chọn môn học</h1>
+			
+			<form th:action="@{/cauhinh/kqtimkiemmonhoc}">
+					<lable id="lable_kihoc">Chọn kì học:
+						<select class="" id="ch_chonki" name="id_kihoc">
+							<option th:each="kihoc : ${session.listkihoc}" 
+							th:value="${kihoc.id}" 
+							th:text="${kihoc.hocKi.ten + ' năm học ' + kihoc.namHoc.ten}" 
+							th:selected="${kihoc.id == session.id_kihoc}"></option>
+						</select>
+					</lable> 
+				<lable id="lable_mamonhoc" >Tìm kiếm theo mã môn học:
+					<input id="ch_nhapid" type="text" name="tenmonhoc" th:value="${session.tenmonhoc}">
+					<button type="submit">Tìm kiếm</button>
+				</lable>
+			</form>
+			
+			<table th:if="${not #lists.isEmpty(session.listMonHocKiHoc)}" border="1">
+				<thead>
+					<th>Mã môn học</th>
+					<th>Tên môn học</th>
+					<th>Số tín chỉ</th>
+					<th></th>
+				</thead>
+				<tbody th:each="monhockihoc : ${session.listMonHocKiHoc}">
+					<tr>
+						<td th:text="${monhockihoc.monHoc.maMonHoc}"></td>
+						<td th:text="${monhockihoc.monHoc.ten}"></td>
+						<td th:text="${monhockihoc.monHoc.soTinChi}"></td>
+						<td>
+							<form th:action="@{/cauhinh/chinhsuadaudiemtrongso}">
+								<input type="hidden" th:value="${monhockihoc.monHoc.id}" name="idmonhoc">
+								<button type="submit">Chỉnh sửa</button>
+							</form> 
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</article>
+	</div>
+	<footer>
 	
-	<form th:action="@{/cauhinh/kqtimkiemmonhoc}">
-			<lable for="ch_chonki">Chọn kì học:</lable> 
-			<select class="" id="ch_chonki" name="id_kihoc">
-				<option th:each="kihoc : ${session.listkihoc}" 
-				th:value="${kihoc.id}" 
-				th:text="${kihoc.hocKi.ten + ' năm học ' + kihoc.namHoc.ten}" 
-				th:selected="${kihoc.id == session.id_kihoc}"></option>
-			</select>
-			<br>
-		<lable for="ch_nhapid" >Tìm kiếm theo tên môn học:</lable>
-		<input id="ch_nhapid" type="text" name="tenmonhoc" th:value="${session.tenmonhoc}">
-		<button type="submit">tìm kiếm</button>
-	</form>
-	
-	<table th:if="${not #lists.isEmpty(session.listMonHocKiHoc)}" border="1">
-		<thead>
-			<th>Mã môn học</th>
-			<th>Tên môn học</th>
-			<th>Số tín chỉ</th>
-			<th></th>
-		</thead>
-		<tbody th:each="monhockihoc : ${session.listMonHocKiHoc}">
-			<tr>
-				<td th:text="${monhockihoc.monHoc.maMonHoc}"></td>
-				<td th:text="${monhockihoc.monHoc.ten}"></td>
-				<td th:text="${monhockihoc.monHoc.soTinChi}"></td>
-				<td>
-					<form th:action="@{/cauhinh/chinhsuadaudiemtrongso}">
-						<input type="hidden" th:value="${monhockihoc.monHoc.id}" name="idmonhoc">
-						<button type="submit">Chỉnh sửa</button>
-					</form> 
-				</td>
-			</tr>
-		</tbody>
-	</table>
+	</footer>
 </body>
 </html>
