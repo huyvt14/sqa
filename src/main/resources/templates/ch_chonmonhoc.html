@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" th:href="@{css/style.css}">
-<title>cấu hình - chọn môn</title>
+<title>Cấu hình - chọn môn học</title>
  <style>
  		body {
             margin: 0;
@@ -21,14 +21,7 @@
             padding: 20px; 
             padding-left: 40px;
         }
-        aside {
-		    float: right; /* Sử dụng float để đặt phần tử sang bên phải */
-		    width: 17%; /* Đặt chiều rộng của phần tử */
-		    background-color:  #ffcccc; /* Màu nền của phần tử aside */
-		    padding: 20px; /* Khoảng cách giữa nội dung và lề của phần tử */
-		    height: 90vh; /* Đặt chiều cao của phần tử là 100% chiều cao của viewport */
-    		box-sizing: border-box; /* Đảm bảo chiều cao bao gồm cả padding */
-		}
+        
 		table {
 			margin : auto;
 			margin-top: 30px;
@@ -56,7 +49,11 @@
 			margin-right: 10%;
 			font-weight: bold;
 		}
-		
+		h3{
+			text-align: center;
+    		margin-top: 60px;
+		}
+
 		
     </style>
 </head>
@@ -65,14 +62,11 @@
 		<header >
 			<div>Trang chủ</div>
 		</header>
-		<aside>
-			<div>Sinh viên</div>
-			<div>Đăng xuất</div>
-		</aside>
+		
 		<article>
 			<h1>Cấu hình đầu điểm trọng số - chọn môn học</h1>
 			
-			<form th:action="@{/cauhinh/kqtimkiemmonhoc}">
+			<form th:action="@{/cauhinh/ketquatimkiemmonhoc}">
 					<lable id="lable_kihoc">Chọn kì học:
 						<select class="" id="ch_chonki" name="id_kihoc">
 							<option th:each="kihoc : ${session.listkihoc}" 
@@ -86,7 +80,7 @@
 					<button type="submit">Tìm kiếm</button>
 				</lable>
 			</form>
-			
+			<h3 th:if="${#lists.isEmpty(session.listMonHocKiHoc)}" border="1">Kì học chưa có môn học</h3>
 			<table th:if="${not #lists.isEmpty(session.listMonHocKiHoc)}" border="1">
 				<thead>
 					<th>Mã môn học</th>

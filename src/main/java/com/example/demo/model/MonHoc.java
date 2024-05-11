@@ -1,7 +1,5 @@
 package com.example.demo.model;
 
-import java.util.ArrayList;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -26,4 +24,12 @@ public class MonHoc {
 	public MonHoc(int id) {
 		this.id = id;
 	}
+	public MonHoc(int id, String maMonHoc, String ten, int soTinChi) {
+		super();
+		this.id = id;
+		this.maMonHoc = maMonHoc;
+		this.ten = ten;
+		this.soTinChi = soTinChi;
+	}
+	
 }

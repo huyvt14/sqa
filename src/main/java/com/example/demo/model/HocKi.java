@@ -18,4 +18,15 @@ public class HocKi {
 	private String moTa;
 	@Column(name = "tt",  unique = true)
 	private int stt;
+	
+	public HocKi() {
+	}
+
+	public HocKi(int id, String ten, int stt) {
+		this.id = id;
+		this.ten = ten;
+		this.stt = stt;
+	}
+	
+	
 }

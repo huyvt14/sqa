@@ -29,4 +29,12 @@ public class KiHoc {
 	public KiHoc(int id) {
 		this.id=id;
 	}
+
+	public KiHoc(int id, HocKi hocKi, NamHoc namHoc, int dangHoc) {
+		this.id = id;
+		this.hocKi = hocKi;
+		this.namHoc = namHoc;
+		this.dangHoc = dangHoc;
+	}
+	
 }

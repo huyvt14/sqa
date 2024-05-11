@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" th:href="@{css/style.css}">
-<title>cấu hình - đầu điểm trọng số</title>
+<title>Cấu hình - đầu điểm trọng số</title>
 <style>
 		body {
             margin: 0;
@@ -21,14 +21,7 @@
             padding: 20px; 
             padding-left: 40px;
         }
-        aside {
-		    float: right; /* Sử dụng float để đặt phần tử sang bên phải */
-		    width: 17%; /* Đặt chiều rộng của phần tử */
-		    background-color:  #ffcccc; /* Màu nền của phần tử aside */
-		    padding: 20px; /* Khoảng cách giữa nội dung và lề của phần tử */
-		    height: 90vh; /* Đặt chiều cao của phần tử là 100% chiều cao của viewport */
-    		box-sizing: border-box; /* Đảm bảo chiều cao bao gồm cả padding */
-		}
+        
 		footer {
 			position: absolute;
     		bottom: -5px;
@@ -80,6 +73,7 @@
         	font-size: 10px;
         }
         
+        
     </style>
 </head>
 <body>
@@ -87,10 +81,6 @@
 		<header >
 			<div>Trang chủ</div>
 		</header>
-		<aside>
-			<div>Sinh viên</div>
-			<div>Đăng xuất</div>
-		</aside>
 		<article>	
 			<h1>Cấu hình đầu điểm trọng số</h1>
 			<h3 th:text="${'Môn học: '+session.monHocTieuDe.maMonHoc + ' - '+session.monHocTieuDe.ten}"></h3>
@@ -149,6 +139,8 @@
 </html>
 	
     <script>
+    var giaTriKiemTraTen = 0;
+    var nutLuuThayDoi = document.getElementById("ch_nutluuthaydoi");
     function themDauDiem() {
     	var selects = document.getElementsByName("trongso");
     	var them = document.getElementById("buttontrai");
@@ -162,7 +154,7 @@
 	
 	        cell1.innerHTML = '<input type="text" name="tendaudiem" oninput="kiemTraTenDauDiem(this)">' + '<input type="hidden" name="id" >'
 	        + '<span class="thongbao"></span>';
-	        cell2.innerHTML = '<select name="trongso">' +
+	        cell2.innerHTML = '<select name="trongso" onchange="kiemTraTongTrongSo()">' +
 	                            '<option value="10">10</option>' +
 	                            '<option value="20">20</option>' +
 	                            '<option value="30">30</option>' +
@@ -175,7 +167,6 @@
 	                            '<option value="100">100</option>' +
 	                            '</select>';
 	        cell3.innerHTML = '<button type="button" onclick="deleteRow(this)">Xóa</button>';
-	        kiemTraTongTrongSo();
 	        them.disabled = false;
 		}
 		else{
@@ -189,7 +180,7 @@
 		
 		        cell1.innerHTML = '<input type="text" name="tendaudiem">' + '<input type="hidden" name="id" oninput="kiemTraTenDauDiem(this)">'
 		        + '<span class="thongbao"></span>';
-		        cell2.innerHTML = '<select name="trongso">' +
+		        cell2.innerHTML = '<select name="trongso" onchange="kiemTraTongTrongSo()">' +
 		                            '<option value="10">10</option>' +
 		                            '<option value="20">20</option>' +
 		                            '<option value="30">30</option>' +
@@ -202,10 +193,11 @@
 		                            '<option value="100">100</option>' +
 		                            '</select>';
 		        cell3.innerHTML = '<button type="button" onclick="deleteRow(this)">Xóa</button>';
-		        kiemTraTongTrongSo();
 		        them.disabled = true;
 			}
 		}
+		kiemTraTongTrongSo();
+		kiemTraTenDauDiem(cell1.firstElementChild); 
    
     }
 
@@ -221,7 +213,6 @@
     function kiemTraTongTrongSo() {
         var selects = document.getElementsByName("trongso");
         var khungThongBao = document.getElementById("khungthongbao");
-        var nutLuuThayDoi = document.getElementById("ch_nutluuthaydoi");
         var tongTrongSo = 0;
 
         // Lặp qua từng select
@@ -240,12 +231,12 @@
         }
     }
     function kiemTraTenDauDiem(chuoi){
-    	let nutluuthaydoi=document.getElementById('ch_nutluuthaydoi');
     	let thongbao = chuoi.parentNode.lastElementChild;
-    	let k1 = 0, k2 = 0, k3 = 0;
+    	let k1 = 0, k2 = 0, k3 = 0, k4 = 0;
     	let kt1 = 'Độ dài tên đầu điểm không quá 20 kí tự!<br>';
     	let kt2 = 'Tên đầu điểm không được chứa kí tự đặc biệt!<br>';
     	let kt3 = 'Tên đầu điểm không được bắt đầu bằng số!<br>';
+    	let kt4 = 'Tên đầu điểm không được bỏ trống!<br>';
     	let s ='';
     	// Kiểm tra độ dài của chuỗi
         if (chuoi.value.length > 20) {
@@ -259,13 +250,17 @@
         if (/^[0-9]/.test(chuoi.value)) {
 			k3=1;
         }
+        if(chuoi.value.trim(' ') ===''){
+        	k4 = 1;
+        }
         if(k1 == 1) {s = s + kt1;  nutluuthaydoi.disabled = true;}
         if(k2 == 1) {s = s + kt2;  nutluuthaydoi.disabled = true;}
         if(k3 == 1) {s = s + kt3;  nutluuthaydoi.disabled = true;}
-        if(k1==0 && k2==0 && k3==0){
+        if(k4 == 1) {s = s + kt4;  nutluuthaydoi.disabled = true;}
+        if(k1==0 && k2==0 && k3==0 && k4==0){
         	nutluuthaydoi.disabled = false;
         }
-        k1=0;k2=0;k3=0;
+        k1=0;k2=0;k3=0;k4=0;
         thongbao.innerHTML =s;
         s= '';
     }

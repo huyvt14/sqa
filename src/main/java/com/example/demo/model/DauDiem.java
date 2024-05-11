@@ -26,4 +26,10 @@ public class DauDiem {
 	public DauDiem(String ten) {
 		this.ten = ten;
 	}
+	public DauDiem(int id, String ten) {
+
+		this.id = id;
+		this.ten = ten;
+	}
+
 }

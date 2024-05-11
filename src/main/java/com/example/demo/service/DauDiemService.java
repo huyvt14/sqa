@@ -16,7 +16,6 @@ public class DauDiemService {
 		return dauDiemRepository.findByTen(ten);
 	}
 	public DauDiem luuVaLayRa(DauDiem dd) {
-        // Lưu đối tượng và trả về đối tượng đã lưu
         return dauDiemRepository.save(dd);
     }
 }

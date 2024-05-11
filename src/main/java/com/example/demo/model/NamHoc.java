@@ -13,4 +13,16 @@ public class NamHoc {
 	private int id;
 	private String ten;
 	private String moTa;
+	
+	public NamHoc() {
+
+	}
+
+	public NamHoc(int id, String ten) {
+		this.id = id;
+		this.ten = ten;
+	}
+	
+	
 }
+

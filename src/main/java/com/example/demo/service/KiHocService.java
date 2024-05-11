@@ -12,6 +12,7 @@ import com.example.demo.repository.KiHocRepository;
 public class KiHocService {
 	private KiHocRepository kiHocRepository;
 	
+
 	public KiHocService(KiHocRepository kiHocRepository) {
 		this.kiHocRepository =kiHocRepository;
 	}
@@ -19,9 +20,9 @@ public class KiHocService {
 	public ArrayList<KiHoc> layDanhSachKiHocChuaBatDau(){
 		return kiHocRepository.layDanhSachKiHocChuaBatDau();
 	}
-	public KiHoc layKiHoc(int id) {
-		return kiHocRepository.findById(id);
-	}
+//	public KiHoc layKiHoc(int id) {
+//		return kiHocRepository.findById(id);
+//	}
 	public KiHoc layKiHocHienTai(int id) {
 		return kiHocRepository.findByDangHoc(id);
 	}

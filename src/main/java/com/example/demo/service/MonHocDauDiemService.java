@@ -12,12 +12,13 @@ import com.example.demo.repository.MonHocDauDiemRepository;
 public class MonHocDauDiemService {
 	private MonHocDauDiemRepository monHocDauDiemRepository;
 	
+	
 	public MonHocDauDiemService(MonHocDauDiemRepository monHocDauDiemRepository) {
 		this.monHocDauDiemRepository = monHocDauDiemRepository;
 	}
 	@Transactional(readOnly = false)
-	public ArrayList<MonHocDauDiem> layDauDiemTrongSo(int id_monhoc){
-		return monHocDauDiemRepository.layDauDiemTrongSo(id_monhoc);
+	public ArrayList<MonHocDauDiem> layDauDiemTrongSo(int id_monhoc, int id_kihocdc){
+		return monHocDauDiemRepository.layDauDiemTrongSo(id_monhoc, id_kihocdc);
 	}
 	@Transactional
 	public void capNhatThayDoi(ArrayList<MonHocDauDiem> monHocDauDiem) {
@@ -25,10 +26,14 @@ public class MonHocDauDiemService {
 			monHocDauDiemRepository.save(mhdd);
 		}
 	}
-	public ArrayList<MonHocDauDiem> layDauDiemMonHocTheoKi(int idkiHoc, int idmonHoc){
-		return monHocDauDiemRepository.findByKiHocIdAndMonHocId(idkiHoc, idmonHoc);
-	}
+//	public ArrayList<MonHocDauDiem> layDauDiemMonHocTheoKi(int idkiHoc, int idmonHoc){
+//		return monHocDauDiemRepository.findByKiHocIdAndMonHocId(idkiHoc, idmonHoc);
+//	}
 	public void xoaDauDiemMonHoc(int id) {
 		monHocDauDiemRepository.deleteById(id);
+	}
+	
+	public void xoaTatCaMonHocDauDiem(int idKiHoc, int idMonHoc) {
+		monHocDauDiemRepository.deleteAllByKiHocIdAndMonHocId(idKiHoc, idMonHoc);
 	}
 }
