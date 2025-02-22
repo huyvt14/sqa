@@ -35,17 +35,17 @@ import com.example.demo.service.MonHocService;
 @SpringBootTest
 @AutoConfigureMockMvc
 public class Test_CauHinhController {
-	@Autowired
+    @Autowired
     private MockMvc mockMvc;
-	@MockBean
+    @MockBean
     private KiHocService kiHocService;    
-	@MockBean
+    @MockBean
     private MonHocDauDiemService monHocDauDiemService;   
-	@MockBean
+    @MockBean
     private MonHocKiHocService monHocKiHocService;
-	@MockBean
+    @MockBean
     private MonHocService monHocService;
-	@MockBean
+    @MockBean
     private DauDiemService dauDiemService;
     @InjectMocks
     private CauHinhController cauHinhController ;
@@ -53,29 +53,29 @@ public class Test_CauHinhController {
     @Test
 //    test @GetMapping("/cauhinh/chonmonhoc")
     public void testXuLyChonMonHoc() throws Exception {
-    	NamHoc nh = new NamHoc(1, "2022-2023");
+        NamHoc nh = new NamHoc(1, "2022-2023");
         NamHoc nh2 = new NamHoc(2, "2023-2024");
-		HocKi hk1 = new HocKi(1, "học kỳ 1" ,1);
-		HocKi hk2 = new HocKi(2, "học kỳ 2" ,3);
-		HocKi hk3 = new HocKi(3, "học kỳ hè" ,2);
-		KiHoc kiHoc1 = new KiHoc(4, hk1, nh2, 0);
-		KiHoc kiHoc2 = new KiHoc(5, hk2, nh2, 0);
-		KiHoc kiHoc3 = new KiHoc(6, hk3, nh2, 0);
-		
-		KiHoc kiHocDau = new KiHoc(2, hk2, nh, 1);
-		ArrayList<KiHoc> dsKiHocChuaBatDau = new ArrayList<>();
-		dsKiHocChuaBatDau.add(kiHoc1); dsKiHocChuaBatDau.add(kiHoc3); dsKiHocChuaBatDau.add(kiHoc2);
+        HocKi hk1 = new HocKi(1, "học kỳ 1" ,1);
+        HocKi hk2 = new HocKi(2, "học kỳ 2" ,3);
+        HocKi hk3 = new HocKi(3, "học kỳ hè" ,2);
+        KiHoc kiHoc1 = new KiHoc(4, hk1, nh2, 0);
+        KiHoc kiHoc2 = new KiHoc(5, hk2, nh2, 0);
+        KiHoc kiHoc3 = new KiHoc(6, hk3, nh2, 0);
         
-		ArrayList<MonHocKiHoc> listMonHocKiHoc = new ArrayList<>();
-		MonHoc mh1 = new MonHoc(1, "INT125", "phân tích thiết kế", 2);
-		MonHoc mh2 = new MonHoc(2, "INT12", "cơ sở dữ liệu", 3);
-		MonHoc mh3 = new MonHoc(3, "INT124", "giải tích", 3);
-		
-		MonHocKiHoc mhkh3 = new MonHocKiHoc(9,kiHoc1,mh1);
-		MonHocKiHoc mhkh1 = new MonHocKiHoc(10,kiHoc1,mh2);
-		MonHocKiHoc mhkh2 = new MonHocKiHoc(11,kiHoc1,mh3);
-		listMonHocKiHoc.add(mhkh1); listMonHocKiHoc.add(mhkh2); listMonHocKiHoc.add(mhkh3);
-		
+        KiHoc kiHocDau = new KiHoc(2, hk2, nh, 1);
+        ArrayList<KiHoc> dsKiHocChuaBatDau = new ArrayList<>();
+        dsKiHocChuaBatDau.add(kiHoc1); dsKiHocChuaBatDau.add(kiHoc3); dsKiHocChuaBatDau.add(kiHoc2);
+        
+        ArrayList<MonHocKiHoc> listMonHocKiHoc = new ArrayList<>();
+        MonHoc mh1 = new MonHoc(1, "INT125", "phân tích thiết kế", 2);
+        MonHoc mh2 = new MonHoc(2, "INT12", "cơ sở dữ liệu", 3);
+        MonHoc mh3 = new MonHoc(3, "INT124", "giải tích", 3);
+        
+        MonHocKiHoc mhkh3 = new MonHocKiHoc(9,kiHoc1,mh1);
+        MonHocKiHoc mhkh1 = new MonHocKiHoc(10,kiHoc1,mh2);
+        MonHocKiHoc mhkh2 = new MonHocKiHoc(11,kiHoc1,mh3);
+        listMonHocKiHoc.add(mhkh1); listMonHocKiHoc.add(mhkh2); listMonHocKiHoc.add(mhkh3);
+        
         mockMvc.perform(get("/cauhinh/chonmonhoc"))
                 .andExpect(status().isOk()) 
                 .andExpect(view().name("ch_chonmonhoc")) 
@@ -83,6 +83,5 @@ public class Test_CauHinhController {
                 .andExpect(request().sessionAttribute("listkihoc", dsKiHocChuaBatDau))
                 .andExpect(request().sessionAttribute("kihoc", kiHocDau.getId()))
                 .andExpect(request().sessionAttribute("tenmonhoc", ""));
-    	
-	}
+    }
 }

@@ -11,15 +11,15 @@ import lombok.Data;
 @Data
 @Entity
 public class SVKhoa {
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
-	private String nienKhoa;
-	@ManyToOne
-	@JoinColumn(name = "khoa_id")
-	private Khoa khoa;
-	@ManyToOne
-	@JoinColumn(name = "sinh_vien_id")
-	private SinhVien sinhVien;
-	private boolean dangHoc;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
+    private String nienKhoa;
+    @ManyToOne
+    @JoinColumn(name = "khoa_id")
+    private Khoa khoa;
+    @ManyToOne
+    @JoinColumn(name = "sinh_vien_id")
+    private SinhVien sinhVien;
+    private boolean dangHoc;
 }

@@ -12,14 +12,14 @@ import lombok.Data;
 @Data
 @Entity
 public class Khoa {
-	@Id
-	private int id;
-	private String ten;
-	private String moTa;
-	@OneToMany
-	@JoinColumn(name = "khoa_id")
-	private Set<MonHoc> danhSachMonHoc;
-	@OneToMany
-	@JoinColumn(name = "khoa_id")
-	private Set<GiangVien> danhSachGiangVien;
+    @Id
+    private int id;
+    private String ten;
+    private String moTa;
+    @OneToMany
+    @JoinColumn(name = "khoa_id")
+    private Set<MonHoc> danhSachMonHoc;
+    @OneToMany
+    @JoinColumn(name = "khoa_id")
+    private Set<GiangVien> danhSachGiangVien;
 }

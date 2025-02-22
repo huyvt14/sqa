@@ -9,8 +9,8 @@ import lombok.Data;
 @Entity
 @Table(name = "hocluc")
 public class HocLuc {
-	@Id
-	private int id;
-	private String ten;
-	private String moTa;
+    @Id
+    private int id;
+    private String ten;
+    private String moTa;
 }

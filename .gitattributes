@@ -1,0 +1,7 @@
+/mvnw text eol=lf
+*.cmd text eol=crlf
+* text=auto
+*.java text eol=lf
+*.java filter=tab2space
+* eol=lf
+

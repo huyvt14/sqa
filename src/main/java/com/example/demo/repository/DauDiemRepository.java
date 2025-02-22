@@ -5,5 +5,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import com.example.demo.model.DauDiem;
 
 public interface DauDiemRepository extends JpaRepository<DauDiem, Integer>{
-	DauDiem findByTen(String ten);
+    DauDiem findByTen(String ten);
 }

@@ -6,15 +6,17 @@ import com.example.demo.repository.MonHocRepository;
 
 @Service
 public class MonHocService {
-	private MonHocRepository monHocRepository;
+    private MonHocRepository monHocRepository;
 
-	public MonHocService (MonHocRepository monHocRepository) {
-		this.monHocRepository = monHocRepository;
-	}
-	public MonHoc layMonHoc(int id) {
-		return monHocRepository.findById(id);
-	}
-	public void capNhatThayDoi(MonHoc monHoc) {
-			monHocRepository.save(monHoc);
-	}
+    public MonHocService (MonHocRepository monHocRepository) {
+        this.monHocRepository = monHocRepository;
+    }
+    
+    public MonHoc layMonHoc(int id) {
+        return monHocRepository.findById(id);
+    }
+    
+    public void capNhatThayDoi(MonHoc monHoc) {
+            monHocRepository.save(monHoc);
+    }
 }

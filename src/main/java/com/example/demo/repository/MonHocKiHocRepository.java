@@ -10,9 +10,9 @@ import com.example.demo.model.MonHocKiHoc;
 
 
 public interface MonHocKiHocRepository extends JpaRepository<MonHocKiHoc, Integer>{
-//	@Procedure(name = "laydanhmonhoccuakihocgannhat", procedureName="sqa1.laydanhmonhoccuakihocgannhat")
+//  @Procedure(name = "laydanhmonhoccuakihocgannhat", procedureName="sqa1.laydanhmonhoccuakihocgannhat")
 //    ArrayList<MonHocKiHoc> layDanhMonHocCuaKiHocGanNhat(@Param("id_kihoc")int id_kihoc);
-	
-	@Procedure(name = "timkiemmonhoctheokihocvaid", procedureName ="sqa1.timkiemmonhoctheokihocvaid")
-	ArrayList<MonHocKiHoc> timkiemMonHocTheoKiHocVaTen(@Param("id_kihoc")int id_kihoc,@Param("tukhoa") String tuKhoa);
+    
+    @Procedure(name = "timkiemmonhoctheokihocvaid", procedureName ="sqa1.timkiemmonhoctheokihocvaid")
+    ArrayList<MonHocKiHoc> timkiemMonHocTheoKiHocVaTen(@Param("id_kihoc")int id_kihoc,@Param("tukhoa") String tuKhoa);
 }

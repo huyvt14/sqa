@@ -14,17 +14,17 @@ import lombok.Data;
 @Entity
 @Table(name = "giangvien")
 public class GiangVien{
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-	@Column( unique = true)
-	private String maGV;
-	@Column( unique = true)
-	private String username;
-	private String password;
-	private String hoTen;
-	private String soDienThoai;
-	private String diaChi;
-	private String ghiChu;
-	private Date ngaySinh;
+    @Column( unique = true)
+    private String maGV;
+    @Column( unique = true)
+    private String username;
+    private String password;
+    private String hoTen;
+    private String soDienThoai;
+    private String diaChi;
+    private String ghiChu;
+    private Date ngaySinh;
 }

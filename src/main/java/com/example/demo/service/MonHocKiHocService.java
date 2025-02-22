@@ -10,20 +10,14 @@ import com.example.demo.repository.MonHocKiHocRepository;
 
 @Service
 public class MonHocKiHocService {
-	private MonHocKiHocRepository monHocKiHocRepository;
-	
-	public MonHocKiHocService(MonHocKiHocRepository monHocKiHocRepository) {
-		this.monHocKiHocRepository = monHocKiHocRepository;
-	}
-	
-//	@Transactional(readOnly = false)
-//	public ArrayList<MonHocKiHoc> layDanhMonHocCuaKiHocGanNhat(int id_kihoc){
-//		return monHocKiHocRepository.layDanhMonHocCuaKiHocGanNhat(id_kihoc);
-//	}
-	
-	@Transactional(readOnly = false)
-	public ArrayList<MonHocKiHoc> timkiemMonHocTheoKiHocVaTen(int id_kihoc, String tuKhoa){
-		return monHocKiHocRepository.timkiemMonHocTheoKiHocVaTen(id_kihoc, tuKhoa);
-	}
-	
+    private MonHocKiHocRepository monHocKiHocRepository;
+    
+    public MonHocKiHocService(MonHocKiHocRepository monHocKiHocRepository) {
+        this.monHocKiHocRepository = monHocKiHocRepository;
+    }
+        
+    @Transactional(readOnly = false)
+    public ArrayList<MonHocKiHoc> timkiemMonHocTheoKiHocVaTen(int id_kihoc, String tuKhoa){
+        return monHocKiHocRepository.timkiemMonHocTheoKiHocVaTen(id_kihoc, tuKhoa);
+    }
 }

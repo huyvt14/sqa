@@ -11,11 +11,11 @@ import lombok.Data;
 @Entity
 @Table(name = "lophocphan")
 public class LopHocPhan {
-	@Id
-	private int id;
-	private String ten;
-	private int nhomMonHoc;
-	@ManyToOne
-	@JoinColumn(name = "monhockihoc_id")
-	private MonHocKiHoc monHocKiHoc;
+    @Id
+    private int id;
+    private String ten;
+    private int nhomMonHoc;
+    @ManyToOne
+    @JoinColumn(name = "monhockihoc_id")
+    private MonHocKiHoc monHocKiHoc;
 }
