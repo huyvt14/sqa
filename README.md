@@ -13,7 +13,7 @@
 - **Junit**
 ## Phân tích thiết kế
 ### Use case:
-![usecase](image\uc.png)
+![usecase](image/uc.png)
 ### Kịch bản: 
 <table border="1">
     <tr>
@@ -174,11 +174,12 @@
     - monhoc-daudiem: dùng để lưu các các đầu điểm có trong 1 môn học.
     - kihoc: dùng để lưu các kì học.
     - monhoc-kihoc: dùng để lưu các môn học có trong 1 kì học.
-![csdl](image\csdl.png)
+![csdl](image/csdl.png)
 ## KẾT QUẢ
 ### Giao diện
-![giao diện 1](image\gd1.png)
-![giao diện 2](image\gd2.png)
-
+![giao diện 1](image/gd1.png)
+![giao diện 2](image/gd2.png)
+### Test case
+[Test case chức năng cấu hình.](https://docs.google.com/document/d/1CGiPgLi4H50wDPuZzzlBXhJpvIxQC1h8Ds0nQ3Us92s/edit?tab=t.0)
     
 
